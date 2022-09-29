@@ -10,4 +10,5 @@
 - Matplotlib: Data Visualization
 - scikit-learn： Visualization and Dimensional Reduction (https://towardsdatascience.com/visualising-high-dimensional-datasets-using-pca-and-t-sne-in-python-8ef87e7915b)
 
-## Team Member
+## Usage
+- Remove the old untitle2 file and upload with new code
