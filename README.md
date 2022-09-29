@@ -12,3 +12,5 @@
 
 ## Usage
 - Remove the old untitle2 file and upload with new code
+- Change the file_path variable according to your own file path
+- Keep the file_path variable "" whenever uploading the file
