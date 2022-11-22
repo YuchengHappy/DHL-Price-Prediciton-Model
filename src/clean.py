@@ -87,7 +87,7 @@ def remove_zero_null(df):
     # Drop Null in PU_APPT and DL_APPT
     df = df.dropna(subset=["PU_APPT", "DL_APPT"])
 
-    # keep last row
+    # keep last row of all SHIPMENT_ID
     df = df.sort_values("Insert_Date").groupby("SHIPMENT_ID").tail(1)
 
     # output type: pandas dataframe
