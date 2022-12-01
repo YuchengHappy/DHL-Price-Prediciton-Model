@@ -1,21 +1,28 @@
 import FE
+import clean
 import joblib
 
 
 def pre_predict(df):
-    df = FE.zip_to_LONG_LAT(df)
-    df = FE.add_fuel(df)
+    df = clean.remove_zero_null(df)
+    df = clean.mode_clean(df)
+    df = clean.state_clean(df)
+    df = clean.zip_clean(df)
+    df = clean.appointment_clean(df)
+    df = FE.add_duration(df)
     df = FE.add_country(df)
+    df = FE.zip_to_LONG_LAT(df)
     df = FE.add_delta(df)
-    df = FE.cross_country(df)
     df = FE.add_time_info(df)
+    df = FE.add_fuel(df)
+    df = FE.cross_country(df)
 
     # TODO: import encoder from encoder folder
-    month_encoder = joblib.load("xgb_model.sav")
-    weekday_encoder = joblib.load("xgb_model.sav")
-    hour_encoder = joblib.load("xgb_model.sav")
-    minute_encoder = joblib.load("xgb_model.sav")
-    one_hot_encoder = joblib.load("xgb_model.sav")
+    month_encoder = joblib.load("month_cyclical.joblib")
+    weekday_encoder = joblib.load("weekday_cyclical.joblib")
+    hour_encoder = joblib.load("hour_cyclical.joblib")
+    minute_encoder = joblib.load("minute_cyclical.joblib")
+    one_hot_encoder = joblib.load("one_hot_encoder.joblib")
 
     df_pu_month = month_encoder.transform(df["PU_MONTH"])
     df_dl_month = month_encoder.transform(df["DL_MONTH"])
